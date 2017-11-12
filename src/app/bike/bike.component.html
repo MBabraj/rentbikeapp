@@ -1,0 +1,34 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="col-md-4">
+
+
+  <div class="box-product-outer">
+
+        <div class="box-product">
+            <div class="img-wrapper">
+                <img src={{bike.photo}} width="300px" class="img-rounded"/>
+                <div class="option">
+                    <div>
+                      Your order: {{bike.order}}
+                      <button *ngIf="bike.order < bike.count + bike.order" type="button" (click)="bike.addOrder()">+</button>
+                      <button *ngIf="bike.order > 0" type="button" (click)="bike.removeOrder()">-</button>
+                    </div>
+                </div>
+            </div>
+            <div><strong>{{bike.name | uppercase}}</strong></div>
+            <div>{{bike.description}}</div>
+
+            <div class="price">
+                <div>{{bike.price | currency}}</div>
+            </div>
+
+            <div *ngIf="(bike.count + bike.order) != 0" >
+              <div [ngClass]="{'highAvailability': bike.count > 10, 'lowAvailability': bike.count < 10}">Ilość: {{bike.count}}</div>
+              <div *ngIf="(bike.count + bike.order) == 0" class="alert alert-danger">
+                <strong>Not Available!</strong>
+              </div>
+            </div>
+        </div>
+  </div>
+</div>
